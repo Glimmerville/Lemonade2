@@ -48,15 +48,17 @@ namespace LemonadeClas
                 {
                     today.timeOfDayNum = today.timeOfDayNum +1;
                     today.WeatherCall();
-                    Console.ReadKey();
+                    //Console.ReadKey();
                 }
                 else if (timeIncrement == 10)
                 {
                     Console.WriteLine("The day is over!");
                     dayCount = dayCount + 1;
+                    Console.WriteLine("Your total cash is ${0}", cash);
                     Console.ReadKey();
                 }
                 Customer Cust = new Customer();
+                Console.ReadKey();
                 Cust.SetThirst();
                 Console.WriteLine("Customer is " + Cust.CustomerThirst);
                 if (Cust.CustomerThirst == "Not Thirsty")
