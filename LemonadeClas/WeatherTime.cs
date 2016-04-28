@@ -8,24 +8,30 @@ namespace LemonadeClas
 {
     class WeatherTime
     {
-        public string morning { get; set; } = "nice";
-        public string noon { get; set; } = "warm";
-        public string afternoon { get; set; } = "cool";
-        public string evening { get; set; } = "cool";
+
         public string weatherNow { get; set; }
         public string tempNow { get; set; }
+        public string[] timeOfDay = { "morning", "noon", "afternoon", "evening" };
+        public int timeOfDayNum { get; set; }
+        public string currTimeWord { get; set; }
 
         string[] weather = { "raining", "sunny", "drizzling", "sunny", "sunny", "sunny", "blazing", "cloudy" };
         string[] temperature = { "cold", "cool", "nice", "warm", "nice", "hot", "warm", "hot" };
 
-        //get a random weather and temp?
-        public WeatherTime(string time)
+        //get a random weather and temp
+        public WeatherTime(int time)
         {
             Random rand = new Random();
+            timeOfDayNum = time;
+            currTimeWord = timeOfDay[time];
             int number = rand.Next(weather.Length);
             weatherNow = weather[number];
             tempNow = temperature[number];
-            Console.WriteLine("The weather this {0} is {1} and {2}", time, weatherNow, tempNow);
+            Console.WriteLine("The weather this {0} is {1} and the temperature is {2}.", currTimeWord, weatherNow, tempNow);
+        }
+        public void WeatherCall()
+        {
+            Console.WriteLine("Time is passing! It is now {0}", timeOfDay[timeOfDayNum]);
         }
         
     }
