@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace LemonadeClas
 {
-    class Player //this really isn't used.
+    class Player //note: I should reference the player by name at some point since I collect it.
     {
         public string playerName { get; set; }
-        //int lemons = 6;
-        //int water = 12;
-        //int sugar = 3;
-        //int ice = 12;
-        //int lemonade = 0;
-        //double cash = 0;
-        public Player(string name)
+        private double playerCash;
+        public double cash { get; set; } = 5;
+
+
+        //Constructor
+        public Player(string name, double cash)
         {
             this.playerName = name;
+            this.playerCash = cash;
         }
     }
 }

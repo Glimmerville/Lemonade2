@@ -8,7 +8,7 @@ namespace LemonadeClas
 {
     class Customer
     {
-        private string customerThirst; //we will set it below.
+        private string customerThirst; 
         public string CustomerThirst { get; set; }
         //set the customer thirst (it works)
         public void SetThirst()
@@ -16,7 +16,7 @@ namespace LemonadeClas
             Random thirst = new Random();
             if (thirst.Next(0, 100) % 2 == 0)
             {
-                CustomerThirst = "Thirsty";
+               CustomerThirst = "Thirsty";
             }
             else
             {
