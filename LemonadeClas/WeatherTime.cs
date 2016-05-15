@@ -15,7 +15,7 @@ namespace LemonadeClas
         public int timeOfDayNum { get; set; }
         public string currTimeWord { get; set; }
 
-        string[] weather = { "raining", "sunny", "drizzling", "sunny", "sunny", "sunny", "blazing", "cloudy" };
+        string[] weather = { "raining", "sunny", "drizzling", "sunny", "sunny", "sunny", "cloudy" };
         string[] temperature = { "cold", "cool", "nice", "warm", "nice", "hot", "warm", "hot" };
 
         //get a random weather and temp
