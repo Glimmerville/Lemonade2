@@ -29,15 +29,17 @@ namespace LemonadeClas
                 }
                 else if (lemonade > 5 && lemonade < 14)
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine("Keep an eye on it and don't let it get to zero.");
-                    Console.ResetColor();
+                    //Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    //Console.WriteLine("Keep an eye on it and don't let it get to zero.");
+                    //Console.ResetColor();
+                    //I took this out because it was filling up the screen
                 }
                 else if (lemonade > 2 && lemonade <= 5)
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine("You should think about making more.");
-                    Console.ResetColor();
+                   // Console.ForegroundColor = ConsoleColor.DarkYellow;
+                   // Console.WriteLine("You should think about making more.");
+                   // Console.ResetColor();
+                   //I took this out because it was distracting 
                 }
                 else if (lemonade > 0 && lemonade <= 2)
                 {
@@ -61,7 +63,7 @@ namespace LemonadeClas
             {
                 Console.WriteLine("You now have a pitcher of Lemonade (14 cups).\n");
                 lemonade = 14;
-                Console.WriteLine("You have used up 6 lemons, 12 cups of water, 3 cups of sugar, and 12 ice cubes.\n");
+                Console.WriteLine("You have used up 6 lemons, 12 cups of water, \n3 cups of sugar, and 12 ice cubes.\n");
                 makeLemonadeCount = makeLemonadeCount + 1;
             }
         }

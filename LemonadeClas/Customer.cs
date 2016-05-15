@@ -16,17 +16,17 @@ namespace LemonadeClas
             Random thirst = new Random();
             if (thirst.Next(0, 100) % 2 == 0)
             {
-               CustomerThirst = "Thirsty";
+               CustomerThirst = "Happy";
             }
             else
             {
-                CustomerThirst = "Not Thirsty";
+                CustomerThirst = "Not Happy";
             }
         }
         public Customer()
         {
             this.CustomerThirst = customerThirst;
         }
-           
+           //Changing this to actually mean 'willing to buy at $ price' but still basically 'thirsty'
     }
 }
