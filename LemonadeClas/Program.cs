@@ -12,10 +12,10 @@ namespace LemonadeClas
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("          .oo00000oo. ");
-            Console.WriteLine("       .oo0000OO0000oo. ");
-            Console.WriteLine("   ...oooo0000OO0000oooo... ");
-            Console.WriteLine("   ...oooo0000OO0000oooo... ");
-            Console.WriteLine("       .oo0000OO0000oo. ");
+            Console.WriteLine("       .oo000000000O0oo. ");
+            Console.WriteLine("   ...oooo0000000000OOooo... ");
+            Console.WriteLine("   ...oooo00000000000oOoo... ");
+            Console.WriteLine("       .oo00000000000oo. ");
             Console.WriteLine("          .oo00000oo. \n");
             Console.WriteLine("o Welcome to LEMONADE STAND! o\n");
             Console.ResetColor();
@@ -30,40 +30,40 @@ namespace LemonadeClas
 
             Console.WriteLine("What is your name?");
             string playerName = Console.ReadLine();
-            Player player = new Player(playerName, 5);
+            Player player = new Player(playerName, 3);
             Lemonstuff currentLemonade = new Lemonstuff(0);
-            //currentLemonade.LemonStatus(); //All the amount tracking is done in Lemonstuff. It works!
-            // Console.WriteLine("You start with $5, which will cover the cost of your first pitcher of lemonade.");
+            //currentLemonade.LemonStatus(); //TESTING
+            Console.WriteLine("You start with $3, which will cover the cost of your first pitcher of lemonade.");
             Console.WriteLine("Let's make some lemonade to start the game. \nWe'll subtract the cost at the end of the day.");
             while (dayCount < 7)
             {
                 currentLemonade.MakeLemonade();
+                Console.WriteLine("Press any key to continue.");
                 Console.ReadKey();
                 Console.Clear();
                 WeatherTime today = new WeatherTime(0);
+                //Console.WriteLine(currentLemonade.makeLemonadeCount); TESTING
                 while (timeIncrement < 21)
                 {
                     timeIncrement = timeIncrement + 1;
                     if (timeIncrement % 5 == 0)
                     {
                         Console.Clear();
-                        Console.ForegroundColor = ConsoleColor.Yellow;
                         today.timeOfDayNum = today.timeOfDayNum + 1;
                         today.WeatherCall();
-                        Console.ResetColor();
                         currentLemonade.LemonStatus();
                     }
                     else if (timeIncrement == 21)
                     {
                         //currentLemonade.ReturnLemonadeCount();
-                        player.cash = player.cash - (currentLemonade.ReturnLemonadeCount() * 5);
+                        player.cash = player.cash - (currentLemonade.ReturnLemonadeCount() * 3);
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                         Console.WriteLine("            Day {0} is over!               ", dayCount);
                         Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                         dayCount = dayCount + 1;
-                        Console.WriteLine("You sold {0} cups of lemonade!", soldCount);
-                        Console.WriteLine("After removing $5 ingredients per pitcher, your total cash is ${0}!", player.cash);
+                        Console.WriteLine("You sold {0} cups of lemonade!\nBut the leftover lemonade can't be saved. Yuck.", soldCount);
+                        Console.WriteLine("After removing $3 ingredients per pitcher, your total cash is ${0}!", player.cash);
                         Console.ResetColor();
                         Console.ReadKey();
                         dayCount = dayCount++;
@@ -72,15 +72,17 @@ namespace LemonadeClas
                         Console.Clear();
                     }
                     else {
-
                         custCount = custCount + 1;
                         Customer Cust = new Customer();
                         Cust.SetThirst();
                         if (today.weatherNow != "sunny" && Cust.CustomerCold != "warm")
-                        {
-                            Console.WriteLine("No one comes for awhile because the weather is so bad.");
+                            {
+                            Console.WriteLine("No one comes for awhile because the weather isn't nice enough.");
                             timeIncrement = timeIncrement + 1;
-                        }
+                            custCount = custCount - 1;
+                            today.WeatherCall();
+                            Console.ReadKey();
+                            }
                         else {
                             Console.WriteLine("\nHere comes a new customer!");
                             Console.WriteLine("This is your customer #{0} of the day.", custCount);
@@ -111,7 +113,6 @@ namespace LemonadeClas
                                 Console.WriteLine("You now have ${0}!", player.cash);
                                 Console.ReadKey();
                                 Console.Clear();
-
                             }
                             else
                             {

@@ -39,7 +39,9 @@ namespace LemonadeClas
         }
         public void WeatherCall()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Time is passing! It is now {0} and the weather is {1}.", timeOfDay[timeOfDayNum], randomWeather());
+            Console.ResetColor();
         }
         
     }

@@ -10,7 +10,7 @@ namespace LemonadeClas
     {
         public string playerName { get; set; }
         private double playerCash;
-        public double cash { get; set; } = 5;
+        public double cash { get; set; } = 3;
 
 
         //Constructor
