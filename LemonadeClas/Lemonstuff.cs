@@ -61,9 +61,9 @@ namespace LemonadeClas
         {
             if (lemons == 6 && water == 12 & sugar == 3 && ice == 12)
             {
-                Console.WriteLine("You pause to make lemonade, and now have a pitcher of lemonade (14 cups).\n");
+                Console.WriteLine("You have a pitcher of lemonade (14 cups).\n");
                 lemonade = 14;
-                Console.WriteLine("You have used up 6 lemons, 12 cups of water, \n3 cups of sugar, and 12 ice cubes.\n");
+               // Console.WriteLine("You have used up 6 lemons, 12 cups of water, \n3 cups of sugar, and 12 ice cubes.\n");
                 makeLemonadeCount = makeLemonadeCount + 1;
             }
         }

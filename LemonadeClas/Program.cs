@@ -30,14 +30,15 @@ namespace LemonadeClas
 
             Console.WriteLine("What is your name?");
             string playerName = Console.ReadLine();
-            Player player = new Player(playerName, 3);
+            Player player = new Player(playerName, 0);
             Lemonstuff currentLemonade = new Lemonstuff(0);
             //currentLemonade.LemonStatus(); //TESTING
-            Console.WriteLine("You start with $3, which will cover the cost of your first pitcher of lemonade.");
-            Console.WriteLine("Let's make some lemonade to start the game. \nWe'll subtract the cost at the end of the day.");
+            Console.WriteLine("The cost of a pitcher of lemonade is $3 - it will come from your profits!");
+            // Console.WriteLine("Let's make some lemonade to start the game. \nWe'll subtract the cost at the end of the day.");
             while (dayCount < 7)
             {
                 currentLemonade.MakeLemonade();
+                player.cash = player.cash - 3;
                 Console.WriteLine("Press any key to continue.");
                 Console.ReadKey();
                 Console.Clear();
@@ -56,7 +57,7 @@ namespace LemonadeClas
                     else if (timeIncrement == 21)
                     {
                         //currentLemonade.ReturnLemonadeCount();
-                        player.cash = player.cash - (currentLemonade.ReturnLemonadeCount() * 3);
+                        player.cash = player.cash - ((currentLemonade.ReturnLemonadeCount() - 1) * 3);
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                         Console.WriteLine("            Day {0} is over!               ", dayCount);
@@ -75,55 +76,83 @@ namespace LemonadeClas
                         custCount = custCount + 1;
                         Customer Cust = new Customer();
                         Cust.SetThirst();
-                        if (today.weatherNow != "sunny" && Cust.CustomerCold != "warm")
-                            {
+                        if (today.weatherNow != "sunny" && Cust.CustomerCold != "Warm" && today.tempNow == "cold")
+                        {
+                            Console.WriteLine("Today the weather is " + today.weatherNow);
                             Console.WriteLine("No one comes for awhile because the weather isn't nice enough.");
                             timeIncrement = timeIncrement + 1;
                             custCount = custCount - 1;
                             today.WeatherCall();
+                            Console.WriteLine("Press any key to continue.");
                             Console.ReadKey();
-                            }
+                        }
                         else {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("Right now the weather is " + today.weatherNow + ".");
+                            Console.ResetColor();
                             Console.WriteLine("\nHere comes a new customer!");
                             Console.WriteLine("This is your customer #{0} of the day.", custCount);
                             //Customer Cust = new Customer();
                             //Console.ReadKey();
                             //Cust.SetThirst();
-                            Console.WriteLine("Do you want to charge $1 or $2 for lemonade?");
+                            Console.WriteLine("How much do you want to change for lemonade?");
                             double price = double.Parse(Console.ReadLine());
-                            Console.Write("Customer is ");
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write(Cust.CustomerThirst + ". ");
-                            Console.ResetColor();
-                            if (Cust.CustomerThirst == "Not Happy" && price == 2)
+                            if (price > 5)
                             {
-                                Console.WriteLine("You try to sell the lemonade, \nbut the customer doesn't want to pay " + price + "!");
-                                Console.WriteLine("Better luck next time?");
-                                Console.ReadKey();
-                                Console.Clear();
-                            }
-                            else if (Cust.CustomerThirst == "Not Happy" && price == 1)
-                            {
-                                Console.WriteLine("But the customer changes his mind because \nyour lemonade is so reasonably priced!");
-                                currentLemonade.lemonade = currentLemonade.lemonade - 1;
-                                player.cash = player.cash + price;
-                                soldCount = soldCount + 1;
-                                Console.WriteLine("You sell a cup of lemonade to the thirsty customer.");
-                                currentLemonade.LemonStatus();
-                                Console.WriteLine("You now have ${0}!", player.cash);
-                                Console.ReadKey();
-                                Console.Clear();
+                                Console.WriteLine("That's a big price!");
+                                Cust.CustomerThirst = "Not Happy";
                             }
                             else
                             {
-                                currentLemonade.lemonade = currentLemonade.lemonade - 1;
-                                player.cash = player.cash + price;
-                                soldCount = soldCount + 1;
-                                Console.WriteLine("You sell a cup of lemonade to the thirsty customer.");
-                                currentLemonade.LemonStatus();
-                                Console.WriteLine("You now have ${0}!", player.cash);
-                                Console.ReadKey();
-                                Console.Clear();
+                                Console.Write("Customer is ");
+                                {
+                                    if (Cust.CustomerThirst == "Happy")
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Green;
+                                    }
+                                    else
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                    }
+                                }
+                                Console.Write(Cust.CustomerThirst + ". ");
+                                Console.ResetColor();
+                                if (Cust.CustomerThirst == "Not Happy" && price >= 2)
+                                {
+                                    Console.WriteLine("You try to sell the lemonade, \nbut the customer doesn't want to pay " + price + "!");
+                                    Console.WriteLine("Better luck next time?");
+                                    Console.WriteLine("Press any key to continue.");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                }
+                                else if (Cust.CustomerThirst == "Not Happy" && price == 1)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.Write("But...the customer changes his mind");
+                                    Console.ResetColor();
+                                    Console.WriteLine(" because \nyour lemonade is so reasonably priced!");
+                                    currentLemonade.lemonade = currentLemonade.lemonade - 1;
+                                    player.cash = player.cash + price;
+                                    soldCount = soldCount + 1;
+                                    Console.WriteLine("You sell a cup of lemonade to the thirsty customer.");
+                                    currentLemonade.LemonStatus();
+                                    Console.WriteLine("You now have ${0}!", player.cash);
+                                    Console.WriteLine("Press any key to continue.");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                }
+                                else
+                                {
+                                    currentLemonade.lemonade = currentLemonade.lemonade - 1;
+                                    player.cash = player.cash + price;
+                                    soldCount = soldCount + 1;
+                                    Console.WriteLine("You sell a cup of lemonade to the thirsty customer.");
+                                    currentLemonade.LemonStatus();
+                                    Console.WriteLine("You now have ${0}!", player.cash);
+                                    Console.WriteLine("Press any key to continue.");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                }
                             }
                         }
                     }
