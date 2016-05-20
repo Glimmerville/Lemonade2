@@ -63,13 +63,30 @@ namespace LemonadeClas
                         Console.WriteLine("            Day {0} is over!               ", dayCount);
                         Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                         dayCount = dayCount + 1;
-                        Console.WriteLine("You sold {0} cups of lemonade!\nBut the leftover lemonade can't be saved. Yuck.", soldCount);
+                        Console.Write(playerName);
+                        Console.WriteLine(" sold {0} cups of lemonade!\nBut the leftover lemonade can't be saved. Yuck.", soldCount);
                         Console.WriteLine("After removing $3 ingredients per pitcher, your total cash is ${0}!", player.cash);
                         Console.ResetColor();
+                        timeIncrement = 0;
+                        Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
-                        dayCount = dayCount++;
-                        Console.WriteLine("Ready for a new day?");
-                        Console.ReadKey();
+                        bool goodAnswer = false;
+                        while (!goodAnswer)
+                        {
+                            Console.WriteLine("Ready for a new day? (Y/N)");
+                            string yorn = Console.ReadLine().ToLower();
+                            while ((yorn != "y" || yorn != "n" )) 
+                            {
+                                Console.WriteLine("What? Please just answer Y or N.");
+                            }
+                            if (yorn == "n")
+                            {
+                                Console.WriteLine("Hope you had fun!");
+                                Console.WriteLine("Press any key to exit.");
+                                Console.ReadKey();
+                                Environment.Exit(0);
+                            }
+                        }
                         Console.Clear();
                     }
                     else {
@@ -95,12 +112,16 @@ namespace LemonadeClas
                             //Customer Cust = new Customer();
                             //Console.ReadKey();
                             //Cust.SetThirst();
-                            Console.WriteLine("How much do you want to change for lemonade?");
+                            Console.WriteLine("How much do you want to charge for lemonade?");
                             double price = double.Parse(Console.ReadLine());
                             if (price > 5)
                             {
                                 Console.WriteLine("That's a big price!");
                                 Cust.CustomerThirst = "Not Happy";
+                                Console.WriteLine("The customer leaves in indignation.");
+                                custCount = custCount + 1;
+                                Console.WriteLine("Press any key to continue.");
+                                Console.ReadKey();
                             }
                             else
                             {
