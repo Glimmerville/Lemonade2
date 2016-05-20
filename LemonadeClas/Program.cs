@@ -70,15 +70,11 @@ namespace LemonadeClas
                         timeIncrement = 0;
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
-                        bool goodAnswer = false;
-                        while (!goodAnswer)
+                        int goodAnswer = 0;
+                        do
                         {
                             Console.WriteLine("Ready for a new day? (Y/N)");
                             string yorn = Console.ReadLine().ToLower();
-                            while ((yorn != "y" || yorn != "n" )) 
-                            {
-                                Console.WriteLine("What? Please just answer Y or N.");
-                            }
                             if (yorn == "n")
                             {
                                 Console.WriteLine("Hope you had fun!");
@@ -86,7 +82,15 @@ namespace LemonadeClas
                                 Console.ReadKey();
                                 Environment.Exit(0);
                             }
-                        }
+                            else if (yorn == "y")
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                Console.WriteLine("What? Please just answer Y or N.");
+                            }
+                        } while (goodAnswer == 0);
                         Console.Clear();
                     }
                     else {
@@ -116,7 +120,7 @@ namespace LemonadeClas
                             double price = double.Parse(Console.ReadLine());
                             if (price > 5)
                             {
-                                Console.WriteLine("That's a big price!");
+                                Console.WriteLine("Come on, " + playerName + "! That's a ridiculous price for lemonade!");
                                 Cust.CustomerThirst = "Not Happy";
                                 Console.WriteLine("The customer leaves in indignation.");
                                 custCount = custCount + 1;
