@@ -11,13 +11,18 @@ namespace LemonadeClas
         public static void Greeting()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("          .oo00000oo. ");
-            Console.WriteLine("       .oo000000000O0oo. ");
-            Console.WriteLine("   ...oooo0000000000OOooo... ");
-            Console.WriteLine("   ...oooo00000000000oOoo... ");
-            Console.WriteLine("       .oo00000000000oo. ");
-            Console.WriteLine("          .oo00000oo. \n");
-            Console.WriteLine("o Welcome to LEMONADE STAND! o\n");
+            Console.WriteLine("                   .oo00000oo. ");
+            Console.WriteLine("                .oo000000000O0oo. ");
+            Console.WriteLine("              .oooo0000000000OOooo. ");
+            Console.WriteLine("              .oooo00000000000oOoo. ");
+            Console.WriteLine("                .oo00000000000oo. ");
+            Console.WriteLine("                   .oo00000oo. \n");
+            Console.WriteLine(" _     _____  _      ____  _      ____  ____  _____ ");
+            Console.WriteLine("/ \\   / __/  / \\__/|/  _ \\/ \\  /|/  _ \\/  _ \\/  __/ ");
+            Console.WriteLine("| |   |  \\   | |\\/||| / \\|| |\\ ||| / \\|| | \\||  \\   ");
+            Console.WriteLine("| |_/\\|  /_  | |  ||| \\_/|| | \\||| |-||| |_/||  /_ ");
+            Console.WriteLine("\\____/\\____\\ \\_/  \\|\\____/\\_/  \\|\\_/ \\|\\____/\\____\\ ");
+            Console.WriteLine("  Welcome to LEMONADE STAND!  \n");
             Console.ResetColor();
         }
         static void Main(string[] args)
@@ -35,7 +40,7 @@ namespace LemonadeClas
             //currentLemonade.LemonStatus(); //TESTING
             Console.WriteLine("The cost of a pitcher of lemonade is $3 - it will come from your profits!");
             // Console.WriteLine("Let's make some lemonade to start the game. \nWe'll subtract the cost at the end of the day.");
-            while (dayCount < 7)
+            while (dayCount < 3)
             {
                 currentLemonade.MakeLemonade();
                 player.cash = player.cash - 3;
@@ -44,17 +49,17 @@ namespace LemonadeClas
                 Console.Clear();
                 WeatherTime today = new WeatherTime(0);
                 //Console.WriteLine(currentLemonade.makeLemonadeCount); TESTING
-                while (timeIncrement < 21)
+                while (timeIncrement < 13)
                 {
                     timeIncrement = timeIncrement + 1;
-                    if (timeIncrement % 5 == 0)
+                    if (timeIncrement % 3 == 0)
                     {
                         Console.Clear();
                         today.timeOfDayNum = today.timeOfDayNum + 1;
                         today.WeatherCall();
                         currentLemonade.LemonStatus();
                     }
-                    else if (timeIncrement == 21)
+                    else if (timeIncrement == 13)
                     {
                         //currentLemonade.ReturnLemonadeCount();
                         player.cash = player.cash - ((currentLemonade.ReturnLemonadeCount() - 1) * 3);
@@ -99,8 +104,11 @@ namespace LemonadeClas
                         Cust.SetThirst();
                         if (today.weatherNow != "sunny" && Cust.CustomerCold != "Warm" && today.tempNow == "cold")
                         {
-                            Console.WriteLine("Today the weather is " + today.weatherNow);
+                            //Console.WriteLine("Today the weather is " + today.weatherNow);
+                            Console.ForegroundColor = ConsoleColor.Cyan;
                             Console.WriteLine("No one comes for awhile because the weather isn't nice enough.");
+                            Console.ResetColor();
+                            Console.WriteLine("You wait, to see if the weather improves.");
                             timeIncrement = timeIncrement + 1;
                             custCount = custCount - 1;
                             today.WeatherCall();
@@ -153,9 +161,9 @@ namespace LemonadeClas
                                 else if (Cust.CustomerThirst == "Not Happy" && price == 1)
                                 {
                                     Console.ForegroundColor = ConsoleColor.Green;
-                                    Console.Write("But...the customer changes his mind");
+                                    Console.Write("But...the customer changes his mind\n");
                                     Console.ResetColor();
-                                    Console.WriteLine(" because \nyour lemonade is so reasonably priced!");
+                                    Console.WriteLine("because your lemonade is so reasonably priced!");
                                     currentLemonade.lemonade = currentLemonade.lemonade - 1;
                                     player.cash = player.cash + price;
                                     soldCount = soldCount + 1;
@@ -182,6 +190,7 @@ namespace LemonadeClas
                         }
                     }
                 }
+                           // Console.WriteLine("The end?"); //test to see where this shows up
             }
         }
     }

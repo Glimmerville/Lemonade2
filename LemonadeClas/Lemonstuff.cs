@@ -21,13 +21,13 @@ namespace LemonadeClas
         {
             Console.WriteLine("You have {0} cups of lemonade.", lemonade);
             {
-                if (lemonade == 14)
+                if (lemonade == 12)
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine("You have a brimming full pitcher of lemonade - 14 cups.");
+                    //Console.ForegroundColor = ConsoleColor.DarkYellow; (this color was distracting)
+                    Console.WriteLine("You have a brimming full pitcher of lemonade - 12 cups.");
                     Console.ResetColor();
                 }
-                else if (lemonade > 5 && lemonade < 14)
+                else if (lemonade > 5 && lemonade < 12)
                 {
                     //Console.ForegroundColor = ConsoleColor.DarkYellow;
                     //Console.WriteLine("Keep an eye on it and don't let it get to zero.");
@@ -61,8 +61,8 @@ namespace LemonadeClas
         {
             if (lemons == 6 && water == 12 & sugar == 3 && ice == 12)
             {
-                Console.WriteLine("You have a pitcher of lemonade (14 cups).\n");
-                lemonade = 14;
+                Console.WriteLine("You have a pitcher of lemonade (12 cups).\n");
+                lemonade = 12;
                // Console.WriteLine("You have used up 6 lemons, 12 cups of water, \n3 cups of sugar, and 12 ice cubes.\n");
                 makeLemonadeCount = makeLemonadeCount + 1;
             }
