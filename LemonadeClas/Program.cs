@@ -45,7 +45,7 @@ namespace LemonadeClas
             Player player = new Player(playerName, 0);
             Lemonstuff currentLemonade = new Lemonstuff(0);
             Console.WriteLine("The cost of a pitcher of lemonade is $3 - it will come from your profits!");
-            while (yorn == "y")//this is not working
+            while (yorn == "y")
             {
                 currentLemonade.MakeLemonade();
                 player.cash = player.cash - 3;
@@ -85,7 +85,14 @@ namespace LemonadeClas
                             Console.WriteLine("\nHere comes a new customer!");
                             Console.WriteLine("This is your customer #{0} of the day.", custCount);
                             Console.WriteLine("How much do you want to charge for lemonade?");
-                            double price = double.Parse(Console.ReadLine());
+                            //make sure they actually enter a number
+                            string intext = (Console.ReadLine());
+                            double price;
+                            while (!double.TryParse(intext, out price))
+                            {
+                                Console.WriteLine("That is not a price.\n Please enter a number.");
+                                intext = Console.ReadLine();
+                            }
                             if (price > 5)
                             {
                                 Console.WriteLine("Come on, " + playerName + "! That's a ridiculous price for lemonade!");
