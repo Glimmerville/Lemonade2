@@ -61,7 +61,7 @@ namespace LemonadeClas
                         today.WeatherCall();
                         currentLemonade.LemonStatus();
                     }
-                   
+
                     else {
                         custCount = custCount + 1;
                         Customer Cust = new Customer();
@@ -78,7 +78,7 @@ namespace LemonadeClas
                             today.tempNow = "warm";
                             AnyKey();
                         }
-                        else if {
+                        else {
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine("Right now the weather is " + today.weatherNow + ".");
                             Console.ResetColor();
@@ -129,7 +129,7 @@ namespace LemonadeClas
                                     Console.WriteLine("You now have ${0}!", player.cash);
                                     AnyKey();
                                 }
-                                else
+                                else //customer is happy
                                 {
                                     currentLemonade.lemonade = currentLemonade.lemonade - 1;
                                     player.cash = player.cash + price;
@@ -139,49 +139,50 @@ namespace LemonadeClas
                                     Console.WriteLine("You now have ${0}!", player.cash);
                                     AnyKey();
                                 }
-                             else if (timeIncrement == 13)
-                            {
-                                player.cash = player.cash - ((currentLemonade.ReturnLemonadeCount() - 1) * 3);
-                                Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                                Console.WriteLine("            Day {0} is over!               ", dayCount);
-                                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                                dayCount = dayCount + 1;
-                                Console.Write(playerName);
-                                Console.WriteLine(" sold {0} cups of lemonade!\nBut the leftover lemonade can't be saved. Yuck.", soldCount);
-                                Console.WriteLine("After removing $3 ingredients per pitcher, your total cash is ${0}!", player.cash);
-                                Console.ResetColor();
-                                AnyKey();
-                                int goodAnswer = 0;
-                                do
-                                {
-                                    Console.WriteLine("Ready for a new day? (Y/N)");
-                                    yorn = Console.ReadLine().ToLower();
-                                    if (yorn == "n")
-                                    {
-                                        Console.WriteLine("Hope you had fun!");
-                                        Console.WriteLine("Press any key to exit."); //this works
-                                        Console.ReadKey();
-                                        Environment.Exit(0);
-                                    }
-                                    else if (yorn == "y")
-                                    {
-                                        timeIncrement = 0;
-                                        Console.WriteLine("You answered Yes but I failed anyway.");//this does not work.
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("What? Please just answer Y or N."); //this works
-                                    }
-                                } while (goodAnswer == 0);
-                                Console.Clear();
-                            }
                             }
                         }
+                        if (timeIncrement == 13)
+                        {
+                            player.cash = player.cash - ((currentLemonade.ReturnLemonadeCount() - 1) * 3);
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                            Console.WriteLine("            Day {0} is over!               ", dayCount);
+                            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                            dayCount = dayCount + 1;
+                            Console.Write(playerName);
+                            Console.WriteLine(" sold {0} cups of lemonade!\nBut the leftover lemonade can't be saved. Yuck.", soldCount);
+                            Console.WriteLine("After removing $3 ingredients per pitcher, your total cash is ${0}!", player.cash);
+                            Console.ResetColor();
+                            AnyKey();
+                            int goodAnswer = 0;
+                            do
+                            {
+                                Console.WriteLine("Ready for a new day? (Y/N)");
+                                yorn = Console.ReadLine().ToLower();
+                                if (yorn == "n")
+                                {
+                                    Console.WriteLine("Hope you had fun!");
+                                    Console.WriteLine("Press any key to exit."); //this works
+                                    Console.ReadKey();
+                                    Environment.Exit(0);
+                                }
+                                else if (yorn == "y")
+                                {
+                                    timeIncrement = 0;
+                                    Console.WriteLine("You answered Yes but I failed anyway.");//this does not work.
+                                }
+                                else
+                                {
+                                    Console.WriteLine("What? Please just answer Y or N."); //this works
+                                }
+                            } while (goodAnswer == 0);
+                            Console.Clear();
+                        }
                     }
-                } 
-            } 
-          Console.WriteLine("The end?"); //test to see where this shows up
+                }
+            }
+            Console.WriteLine("The end?"); //test to see where this shows up
         }
     }
 }
+
