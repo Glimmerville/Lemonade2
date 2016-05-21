@@ -38,7 +38,7 @@ namespace LemonadeClas
             int timeIncrement = 0;
             int custCount = 0;
             int soldCount = 0;
-            string yorn = "y";//do you want to play again (begin with y to play at all)
+            string yorn = "y";
             Greeting();
             Console.WriteLine("What is your name?");
             string playerName = Console.ReadLine();
@@ -169,7 +169,9 @@ namespace LemonadeClas
                                 else if (yorn == "y")
                                 {
                                     timeIncrement = 0;
-                                    Console.WriteLine("You answered Yes but I failed anyway.");//this does not work.
+                                    custCount = 0;
+                                    goodAnswer = 1;
+                                    currentLemonade.MakeLemonade();
                                 }
                                 else
                                 {
